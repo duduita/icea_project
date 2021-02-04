@@ -1,0 +1,96 @@
+<!-- https://github.com/danwild/leaflet-velocity -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title>Project Demo</title>
+    <meta charset="utf-8" />
+  </head>
+  <div class="top input-group">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search"
+      name="search"
+    />
+    <div class="input-group-btn">
+      <button class="btn btn-primary" type="submit">
+        <i class="glyphicon glyphicon-search"></i>
+      </button>
+    </div>
+  </div>
+  <!-- <div class="map" id="map"></div> -->
+  <div class="bottom">
+    <div class="options">
+      <button class="btn btn-primary" type="submit">
+        <span class="glyphicon glyphicon-play-circle"></span>
+      </button>
+    </div>
+    <div class="bar">
+      <div class="progress" style="height: 10px;">
+        <div
+          class="progress-bar"
+          role="progressbar"
+          style="width: 25%; height: 10px;"
+          aria-valuenow="25"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        ></div>
+      </div>
+    </div>
+  </div>
+  <div class="scale">
+    <table class="table table-borderless">
+      <thead>
+        <tr class="date">
+          <td scope="col">Qua 3</td>
+          <td scope="col">Qui 4</td>
+          <td scope="col">Sex 5</td>
+          <td scope="col">Sáb 6</td>
+          <td scope="col">Dom 7</td>
+          <td scope="col">Seg 8</td>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <body>
+    <!--vendor-->
+    <!--<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <!-- Leaflet -->
+    <link
+      rel="stylesheet"
+      href="https://npmcdn.com/leaflet@1.1.0/dist/leaflet.css"
+    />
+    <script src="https://npmcdn.com/leaflet@1.1.0/dist/leaflet.js"></script>
+
+    <!-- Load Esri Leaflet from CDN -->
+    <script
+      src="https://unpkg.com/esri-leaflet@2.1.4/dist/esri-leaflet.js"
+      integrity="sha512-m+BZ3OSlzGdYLqUBZt3u6eA0sH+Txdmq7cqA1u8/B2aTXviGMMLOfrKyiIW7181jbzZAY0u+3jWoiL61iLcTKQ=="
+      crossorigin=""
+    ></script>
+
+    <!--leaflet-idw-->
+    <script src="src/leaflet-idw.js"></script>
+
+    <!--temp data-->
+    <script src="data/temps_sm.js"></script>
+
+    <!--demo-->
+    <link rel="stylesheet" href="netcdf-vis.css" />
+    <script src="netcdf-vis.js"></script>
+
+    <!--leaflet-velocity-->
+    <link rel="stylesheet" href="dist/leaflet-velocity.css" />
+    <script src="dist/leaflet-velocity.js"></script>
+  </body>
+</html>

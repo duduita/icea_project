@@ -1,0 +1,85 @@
+body {
+  margin: 0px;
+  background-color: #333;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#heading {
+  text-align: center;
+  padding: 20px;
+  background: #333;
+  color: #ccc;
+}
+
+a {
+  color: #3388ff;
+}
+
+.top {
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 50px;
+  z-index: 1000;
+  width: 15%;
+}
+
+.bottom {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  position: absolute;
+  padding-left: 30px;
+  padding-right: 30px;
+  bottom: 60px;
+  width: 100%;
+  z-index: 10000;
+}
+
+.glyphicon-play-circle {
+  font-size: 50px;
+}
+
+.scale {
+  position: absolute;
+  padding-left: 130px;
+  padding-right: 30px;
+  bottom: 20px;
+  width: 100%;
+  z-index: 10000;
+}
+
+td {
+  color: #fff;
+}
+
+.date > :hover {
+  background: #337ab7;
+  border-radius: 3px;
+}
+
+.bottom > .bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.bar > div {
+  margin-left: 20px;
+  display: flex;
+  width: 100%;
+  justify-items: center;
+  align-items: center;
+}
+
+#map {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #333;
+}
+
+.leaflet-canvas-layer {
+  opacity: 0.55;
+}
