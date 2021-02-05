@@ -110,4 +110,26 @@ $.getJSON("data/sampling.json", function(data) {
 
   layerControl.addOverlay(velocityLayer, "Sampling America Wind");
   map.setView([-18, -50], 5);
+
+  $(document).ready(function() {
+    alert("ready");
+    $(".info-legend")
+      .on("click", function() {
+        alert("called");
+        velocityLayer.addTo(map);
+      })
+      .change();
+  });
 });
+
+var legend = L.control({ position: "topright" });
+legend.onAdd = function(map) {
+  var div = L.DomUtil.create("div", "info-legend");
+  div.innerHTML =
+    "<select><option>1</option><option>2</option><option>3</option></select>";
+  div.firstChild.onmousedown = div.firstChild.ondblclick =
+    L.DomEvent.stopPropagation;
+  return div;
+};
+
+legend.addTo(map);

@@ -1,46 +1,48 @@
 <!DOCTYPE html>
+
 <html>
   <head>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>Project Demo</title>
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      function getCloudMadeUrl(styleId) {
+        return (
+          "http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/" +
+          styleId +
+          "/256/{z}/{x}/{y}.png"
+        );
+      }
+      var cloudmadeAttribution =
+          "Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade",
+        cloudmade = new L.TileLayer(getCloudMadeUrl(997), {
+          attribution: cloudmadeAttribution
+        }),
+        cloudmade2 = new L.TileLayer(getCloudMadeUrl(998), {
+          attribution: "Hello world"
+        });
+
+      var map = new L.Map("map")
+        .addLayer(cloudmade)
+        .setView(new L.LatLng(50.5, 30.51), 15);
+
+      var legend = L.control({ position: "topright" });
+      legend.onAdd = function(map) {
+        var div = L.DomUtil.create("div", "info legend");
+        div.innerHTML =
+          "<select><option>1</option><option>2</option><option>3</option></select>";
+        div.firstChild.onmousedown = div.firstChild.ondblclick =
+          L.DomEvent.stopPropagation;
+        return div;
+      };
+      legend.addTo(map);
+    </script>
   </head>
-  <div class="top">
-    <div class="options">
-      <button type="button" class="btn btn-dark btn-sm">
-        <span class="glyphicon glyphicon-play"></span>
-      </button>
-    </div>
-    <div class="bar">
-      <div class="progress">
-        <div
-          class="progress-bar"
-          role="progressbar"
-          style="width: 25%;"
-          aria-valuenow="25"
-          aria-valuemin="0"
-          aria-valuemax="100"
-        ></div>
-      </div>
-    </div>
-    <div class="scale">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">Qua 3</th>
-            <th scope="col">Qui 4</th>
-            <th scope="col">Sex 5</th>
-            <th scope="col">Sáb 6</th>
-            <th scope="col">Dom 7</th>
-            <th scope="col">Seg 8</th>
-          </tr>
-        </thead>
-      </table>
-    </div>
-  </div>
+  <body>
+    <div id="map" style="width:400px; height:400px"></div>
+  </body>
 </html>

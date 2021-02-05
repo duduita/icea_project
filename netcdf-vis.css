@@ -89,14 +89,6 @@ td {
   text-shadow: 0 0 4px black;
 }
 
-.leaflet-control-layers-overlays > label > div {
-  margin-left: 5px;
-}
-
-.leaflet-control-layers-base > label > div {
-  margin-left: 5px;
-}
-
 .leaflet-control-layers-overlays > label > :hover {
   background-color: #4c4949;
   border-radius: 19.2px;
@@ -111,6 +103,7 @@ td {
   justify-content: flex-start;
   width: 100%;
   margin-right: 10px;
+  text-shadow: 0 0 4px black;
 }
 
 .leaflet-control-layers-base > label > :hover {
@@ -121,13 +114,12 @@ td {
 }
 
 .leaflet-control-layers.leaflet-control-layers-expanded.leaflet-control {
-  border-radius: 19.2px;
-  box-shadow: 0 0 2px gray;
+  border-color: transparent;
 }
 
 .leaflet-control-layers-selector {
-  height: 25px;
-  width: 25px;
+  height: 0px;
+  width: 0px;
   background-color: #eee;
   visibility: hidden;
 }
@@ -191,4 +183,64 @@ td {
 
 .date-item {
   padding: 4px !important;
+}
+
+.menu {
+  position: absolute;
+  right: 50px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a,
+.dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover,
+.dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
