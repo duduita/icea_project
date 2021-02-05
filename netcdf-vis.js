@@ -1,9 +1,10 @@
 function initDemoMap() {
   var Esri_DarkGreyCanvas = L.esri.basemapLayer("DarkGray");
   var Esri_WorldImagery = L.esri.basemapLayer("Imagery");
+  //prettier-ignore
   var baseLayers = {
     "Grey Canvas": Esri_DarkGreyCanvas,
-    "Satellite": Esri_WorldImagery,
+    "Satellite": Esri_WorldImagery
   };
 
   // set map bounds
@@ -96,18 +97,17 @@ $.getJSON("data/problem.json", function(data) {
 });
 
 $.getJSON("data/sampling.json", function(data) {
-    var velocityLayer = L.velocityLayer({
-      displayValues: true,
-      displayOptions: {
-        velocityType: "Wind",
-        displayPosition: "bottomleft",
-        displayEmptyString: "No wind data"
-      },
-      data: data,
-      maxVelocity: 25
-    });
-  
-    layerControl.addOverlay(velocityLayer, "Sampling America Wind");
-    map.setView([-18, -50], 5);
+  var velocityLayer = L.velocityLayer({
+    displayValues: true,
+    displayOptions: {
+      velocityType: "Wind",
+      displayPosition: "bottomleft",
+      displayEmptyString: "No wind data"
+    },
+    data: data,
+    maxVelocity: 25
   });
-  
+
+  layerControl.addOverlay(velocityLayer, "Sampling America Wind");
+  map.setView([-18, -50], 5);
+});

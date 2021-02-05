@@ -12,7 +12,7 @@ body {
 }
 
 a {
-  color: #3388ff;
+  color: #4c4949;
 }
 
 .top {
@@ -30,31 +30,22 @@ a {
   position: absolute;
   padding-left: 30px;
   padding-right: 30px;
-  bottom: 60px;
+  bottom: 10px;
   width: 100%;
   z-index: 10000;
-}
-
-.glyphicon-play-circle {
-  font-size: 50px;
 }
 
 .scale {
   position: absolute;
   padding-left: 130px;
   padding-right: 30px;
-  bottom: 20px;
+  bottom: -10px;
   width: 100%;
   z-index: 10000;
 }
 
 td {
   color: #fff;
-}
-
-.date > :hover {
-  background: #337ab7;
-  border-radius: 3px;
 }
 
 .bottom > .bar {
@@ -82,4 +73,122 @@ td {
 
 .leaflet-canvas-layer {
   opacity: 0.55;
+}
+
+.leaflet-canvas-layer {
+  opacity: 0.55;
+}
+
+.leaflet-control-layers-overlays > label {
+  font-size: 16px;
+  display: flex;
+  align-content: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin-right: 10px;
+  text-shadow: 0 0 4px black;
+}
+
+.leaflet-control-layers-overlays > label > div {
+  margin-left: 5px;
+}
+
+.leaflet-control-layers-base > label > div {
+  margin-left: 5px;
+}
+
+.leaflet-control-layers-overlays > label > :hover {
+  background-color: #4c4949;
+  border-radius: 19.2px;
+  width: 100%;
+  transition: opacity 0.2s linear;
+}
+
+.leaflet-control-layers-base > label {
+  font-size: 16px;
+  display: flex;
+  align-content: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin-right: 10px;
+}
+
+.leaflet-control-layers-base > label > :hover {
+  background-color: #4c4949;
+  border-radius: 19.2px;
+  width: 100%;
+  transition: opacity 0.2s linear;
+}
+
+.leaflet-control-layers.leaflet-control-layers-expanded.leaflet-control {
+  border-radius: 19.2px;
+  box-shadow: 0 0 2px gray;
+}
+
+.leaflet-control-layers-selector {
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  visibility: hidden;
+}
+
+.leaflet-control-layers-separator {
+  margin: 5px;
+}
+
+.play-button {
+  color: #9d0300;
+  border-radius: 9999px;
+  background-color: #e5e5e5;
+  border: 0px;
+  box-shadow: 0 0 4px 0 black;
+}
+
+.search-button {
+  background-color: #fff;
+  border-color: #e5e5e5;
+  color: #a7a7a7;
+  height: 30px !important;
+}
+
+.form-control {
+  border-radius: 15px;
+  box-shadow: 0 0 4px 0 black;
+  width: 170px !important;
+  height: 30px !important;
+}
+
+.form-control-expanded {
+  border-radius: 15px;
+  box-shadow: 0 0 4px 0 black;
+  width: 250px !important;
+  height: 33px !important;
+}
+
+.form-control:focus {
+  border-color: #e5e5e5 !important;
+}
+
+.form-control::placeholder {
+  color: #555;
+}
+
+.play {
+  font-size: 30px;
+}
+
+.options > :hover {
+  color: #9d0300;
+  background-color: #e5e5e5;
+}
+
+.scale {
+  text-shadow: 0 0 4px black;
+  position: absolute;
+  bottom: 0px;
+  height: 30px;
+}
+
+.date-item {
+  padding: 4px !important;
 }
