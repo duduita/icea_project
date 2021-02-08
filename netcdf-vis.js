@@ -178,4 +178,26 @@ $.getJSON("data/sampling.json", function (data) {
       })
       .change();
   });
+
+  $(document).ready(function () {
+    var imageUrl =
+        "https://estatico-redemet.decea.mil.br/satelite/2020/03/21/realcada/maps/realcada_202003211300.png",
+      imageBounds = [
+        [-25.24, -100],
+        [12.52, -56],
+      ];
+    var layer = L.imageOverlay(imageUrl, imageBounds);
+    var actived = 0;
+    $("#satellite")
+      .on("click", function () {
+        if (!actived) {
+          layer.addTo(map);
+          actived = 1;
+        } else {
+          layer.remove(map);
+          actived = 0;
+        }
+      })
+      .change();
+  });
 });
