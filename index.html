@@ -9,8 +9,12 @@
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
     <script>
       $(document).ready(function () {
+        //paste this code under the head tag or in a separate js file.
+        // Wait for window load
+
         // $(".info-legend")
         //   .on("change", function() {
         //     var strUsertext = this.selectedIndex;
@@ -82,92 +86,106 @@
     <title>Project Demo</title>
     <meta charset="utf-8" />
   </head>
-  <div class="menu">
-    <nav class="animated bounceInDown">
-      <ul>
-        <li>
-          <a href="#profile"
-            ><img class="icon" src="/data/sun.svg" />Temperature</a
-          >
-        </li>
-        <li class="sub-menu">
-          <a href="#settings"
-            ><img class="icon" src="/data/cloud.svg" /> Wind</a
-          >
-          <ul>
-            <li>
-              <a href="#settings" id="global"
-                ><img class="small-icon" src="/data/wind.svg" /> Global Wind</a
-              >
-            </li>
-            <li>
-              <a href="#settings" id="australia"
-                ><img class="small-icon" src="/data/wind.svg" /> Australian
-                Wind</a
-              >
-            </li>
-            <li>
-              <a href="#settings" id="south"
-                ><img class="small-icon" src="/data/wind.svg" /> South Wind</a
-              >
-            </li>
-            <li>
-              <a href="#settings" id="test"
-                ><img class="small-icon" src="/data/wind.svg" /> Test Wind</a
-              >
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-  </div>
-  <div class="top input-group">
-    <input
-      id="search-form"
-      type="text"
-      class="search form-control"
-      placeholder="Procurar localidade.."
-      name="search"
-    />
-    <div class="input-group-btn">
-      <button class="btn btn-primary search-button" type="submit">
-        <i class="glyphicon glyphicon-search"></i>
-      </button>
+  <body>
+    <div class="menu">
+      <nav class="animated bounceInDown">
+        <ul>
+          <li>
+            <a href="#profile"
+              ><img class="icon" src="/data/sun.svg" /> Temperature</a
+            >
+          </li>
+          <li>
+            <a href="#profile"
+              ><img class="icon" src="/data/satellite.svg" /> Satellite</a
+            >
+          </li>
+          <li class="sub-menu">
+            <a href="#settings"
+              ><img class="icon" src="/data/cloud.svg" /> Wind</a
+            >
+            <ul>
+              <li>
+                <a href="#settings" id="global"
+                  ><img class="small-icon" src="/data/wind.svg" /> Global
+                  Wind</a
+                >
+              </li>
+              <li>
+                <a href="#settings" id="australia"
+                  ><img class="small-icon" src="/data/wind.svg" /> Australian
+                  Wind</a
+                >
+              </li>
+              <li>
+                <a href="#settings" id="south"
+                  ><img class="small-icon" src="/data/wind.svg" /> South Wind</a
+                >
+              </li>
+              <li>
+                <a href="#settings" id="test"
+                  ><img class="small-icon" src="/data/wind.svg" /> Test Wind</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
     </div>
-  </div>
-  <div class="map" id="map"></div>
-  <div class="bottom">
-    <div class="options">
-      <button class="btn btn-primary play-button" type="submit">
-        <span id="play" class="glyphicon play glyphicon-play"></span>
-      </button>
-    </div>
-    <div class="bar">
-      <div class="progress" style="height: 6px; background-color: #4c4949">
-        <div
-          id="p-bar"
-          class="progress-bar"
-          role="progressbar"
-          style="width: 16.66%; height: 6px; background-color: #e5e5e5"
-        ></div>
+    <div class="top input-group">
+      <input
+        id="search-form"
+        type="text"
+        class="search form-control"
+        placeholder="Procurar localidade.."
+        name="search"
+      />
+      <div class="input-group-btn">
+        <button class="btn btn-primary search-button" type="submit">
+          <i class="glyphicon glyphicon-search"></i>
+        </button>
       </div>
     </div>
+    <div class="map" id="map"></div>
+    <div class="bottom">
+      <div class="options">
+        <button class="btn btn-primary play-button" type="submit">
+          <span id="play" class="glyphicon play glyphicon-play"></span>
+        </button>
+      </div>
+      <div class="bar">
+        <div class="progress" style="height: 6px; background-color: #4c4949">
+          <div
+            id="p-bar"
+            class="progress-bar"
+            role="progressbar"
+            style="width: 16.66%; height: 6px; background-color: #e5e5e5"
+          ></div>
+        </div>
+      </div>
+    </div>
+    <div class="scale">
+      <table class="table table-borderless">
+        <thead>
+          <tr class="date">
+            <td id="date-1" class="date-item" scope="col">Qua 3</td>
+            <td id="date-2" class="date-item" scope="col">Qui 4</td>
+            <td id="date-3" class="date-item" scope="col">Sex 5</td>
+            <td id="date-4" class="date-item" scope="col">Sáb 6</td>
+            <td id="date-5" class="date-item" scope="col">Dom 7</td>
+            <td id="date-6" class="date-item" scope="col">Seg 8</td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <!--test
+  <div class="test">
+    <img
+      class="icon"
+      src="https://estatico-redemet.decea.mil.br/satelite/2020/03/21/realcada/maps/realcada_202003211300.png"
+    />
   </div>
-  <div class="scale">
-    <table class="table table-borderless">
-      <thead>
-        <tr class="date">
-          <td id="date-1" class="date-item" scope="col">Qua 3</td>
-          <td id="date-2" class="date-item" scope="col">Qui 4</td>
-          <td id="date-3" class="date-item" scope="col">Sex 5</td>
-          <td id="date-4" class="date-item" scope="col">Sáb 6</td>
-          <td id="date-5" class="date-item" scope="col">Dom 7</td>
-          <td id="date-6" class="date-item" scope="col">Seg 8</td>
-        </tr>
-      </thead>
-    </table>
-  </div>
-  <body>
+  -->
     <!--vendor-->
     <!--<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -196,5 +214,6 @@
     <!--leaflet-velocity-->
     <link rel="stylesheet" href="dist/leaflet-velocity.css" />
     <script src="dist/leaflet-velocity.js"></script>
+    <div class="se-pre-con"></div>
   </body>
 </html>

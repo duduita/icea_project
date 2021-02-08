@@ -71,67 +71,9 @@ td {
   background-color: #333;
 }
 
-.leaflet-canvas-layer {
-  opacity: 0.55;
-}
-
-.leaflet-canvas-layer {
-  opacity: 0.55;
-}
-
-.leaflet-control-layers-overlays > label {
-  font-size: 16px;
-  display: flex;
-  align-content: center;
-  justify-content: flex-start;
-  width: 100%;
-  margin-right: 10px;
-  text-shadow: 0 0 4px black;
-}
-
-.leaflet-control-layers-overlays > label > :hover {
-  background-color: #4c4949;
-  border-radius: 19.2px;
-  width: 100%;
-  transition: opacity 0.2s linear;
-}
-
-.leaflet-control-layers-base > label {
-  font-size: 16px;
-  display: flex;
-  align-content: center;
-  justify-content: flex-start;
-  width: 100%;
-  margin-right: 10px;
-  text-shadow: 0 0 4px black;
-}
-
-.leaflet-control-layers-base > label > :hover {
-  background-color: #4c4949;
-  border-radius: 19.2px;
-  width: 100%;
-  transition: opacity 0.2s linear;
-}
-
-.leaflet-control-layers.leaflet-control-layers-expanded.leaflet-control {
-  border-color: transparent;
-}
-
-.leaflet-control-layers-selector {
-  height: 0px;
-  width: 0px;
-  background-color: #eee;
-  visibility: hidden;
-}
-
-.leaflet-control-layers-separator {
-  margin: 5px;
-}
-
 .play-button {
   /*color: #9d0300;*/
   color: #3498db;
-  border-radius: 9999px;
   background-color: #e5e5e5;
   border: 0px;
   box-shadow: 0 0 4px 0 black;
@@ -145,7 +87,6 @@ td {
 }
 
 .form-control {
-  border-radius: 15px;
   box-shadow: 0 0 4px 0 black;
   width: 170px !important;
   height: 30px !important;
@@ -170,12 +111,6 @@ td {
   font-size: 30px;
 }
 
-.options > :hover {
-  /*color: #9d0300;*/
-  color: #3498db;
-  background-color: #e5e5e5;
-}
-
 .scale {
   text-shadow: 0 0 4x black;
   position: absolute;
@@ -193,15 +128,11 @@ td {
   z-index: 1001;
 }
 
-/* INNER UL HIDE */
-body {
-  background-color: #fff;
-  font-size: 14px;
-}
 nav {
   position: relative;
   margin: 10px;
   width: 180px;
+  border-radius: 15px;
 }
 nav ul {
   list-style: none;
@@ -258,4 +189,34 @@ nav ul li ul li a:hover {
 
 a {
   text-decoration: none !important;
+}
+
+.test > img {
+  position: absolute;
+  z-index: 500;
+  height: 100%;
+  width: 100%;
+}
+
+/* Paste this css to your style sheet file or under head tag */
+/* This only works with JavaScript, 
+if it's not present, don't show loader */
+.no-js #loader {
+  display: none;
+}
+.js #loader {
+  display: block;
+  position: absolute;
+  left: 100px;
+  top: 0;
+}
+.se-pre-con {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  background-image: url(https://smallenvelop.com/wp-content/uploads/2014/08/Preloader_11.gif)
+    center no-repeat #fff;
 }
