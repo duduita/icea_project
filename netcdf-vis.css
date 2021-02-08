@@ -210,13 +210,3 @@ if it's not present, don't show loader */
   left: 100px;
   top: 0;
 }
-.se-pre-con {
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  z-index: 10000;
-  background-image: url(https://smallenvelop.com/wp-content/uploads/2014/08/Preloader_11.gif)
-    center no-repeat #fff;
-}
