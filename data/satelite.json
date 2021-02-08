@@ -1,0 +1,22 @@
+{
+  "status": true,
+  "message": 200,
+  "data": {
+    "tipo": "realcada",
+    "lat_lon": {
+      "id": 1,
+      "lon_min": "-100",
+      "lon_max": "-25.24",
+      "lat_min": "-56",
+      "lat_max": "12.52"
+    },
+    "anima": ["13:00"],
+    "satelite": [
+      {
+        "data": "2020-03-21 13:00:00",
+        "path": "https://estatico-redemet.decea.mil.br/satelite/2020/03/21/realcada/maps/realcada_202003211300.png",
+        "tamanho": 1337324
+      }
+    ]
+  }
+}

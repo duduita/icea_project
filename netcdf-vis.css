@@ -12,7 +12,7 @@ body {
 }
 
 a {
-  color: #3388ff;
+  color: #4c4949;
 }
 
 .top {
@@ -20,7 +20,7 @@ a {
   margin-top: 10px;
   margin-left: 50px;
   z-index: 1000;
-  width: 15%;
+  width: 5%; /* it's wierd */
 }
 
 .bottom {
@@ -30,31 +30,22 @@ a {
   position: absolute;
   padding-left: 30px;
   padding-right: 30px;
-  bottom: 60px;
+  bottom: 10px;
   width: 100%;
   z-index: 10000;
-}
-
-.glyphicon-play-circle {
-  font-size: 50px;
 }
 
 .scale {
   position: absolute;
   padding-left: 130px;
   padding-right: 30px;
-  bottom: 20px;
+  bottom: -10px;
   width: 100%;
   z-index: 10000;
 }
 
 td {
   color: #fff;
-}
-
-.date > :hover {
-  background: #337ab7;
-  border-radius: 3px;
 }
 
 .bottom > .bar {
@@ -80,6 +71,152 @@ td {
   background-color: #333;
 }
 
-.leaflet-canvas-layer {
-  opacity: 0.55;
+.play-button {
+  /*color: #9d0300;*/
+  color: #3498db;
+  background-color: #e5e5e5;
+  border: 0px;
+  box-shadow: 0 0 4px 0 black;
+}
+
+.search-button {
+  background-color: #fff;
+  border-color: #e5e5e5;
+  color: #a7a7a7;
+  height: 30px !important;
+}
+
+.form-control {
+  box-shadow: 0 0 4px 0 black;
+  width: 170px !important;
+  height: 30px !important;
+}
+
+.form-control-expanded {
+  border-radius: 15px;
+  box-shadow: 0 0 4px 0 black;
+  width: 250px !important;
+  height: 33px !important;
+}
+
+.form-control:focus {
+  border-color: #e5e5e5 !important;
+}
+
+.form-control::placeholder {
+  color: #555;
+}
+
+.play {
+  font-size: 30px;
+}
+
+.scale {
+  text-shadow: 0 0 4x black;
+  position: absolute;
+  bottom: 0px;
+  height: 30px;
+}
+
+.date-item {
+  padding: 4px !important;
+}
+
+.menu {
+  position: absolute;
+  right: 0px;
+  z-index: 1001;
+}
+
+nav {
+  position: relative;
+  margin: 10px;
+  width: 180px;
+  border-radius: 15px;
+}
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+nav ul li {
+  /* Sub Menu */
+}
+nav ul li a {
+  display: block;
+  background: #ebebeb;
+  padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
+  -webkit-transition: 0.2s linear;
+  -moz-transition: 0.2s linear;
+  -ms-transition: 0.2s linear;
+  -o-transition: 0.2s linear;
+  transition: 0.2s linear;
+}
+nav ul li a:hover {
+  background: #f8f8f8;
+  color: #515151;
+}
+nav ul li a .fa {
+  width: 16px;
+  text-align: center;
+  margin-right: 5px;
+  float: right;
+}
+nav ul ul {
+  background-color: #ebebeb;
+}
+nav ul li ul li a {
+  background: #f8f8f8;
+  border-left: 4px solid transparent;
+  padding: 10px 20px;
+}
+nav ul li ul li a:hover {
+  background: #ebebeb;
+  border-left: 4px solid #3498db;
+}
+
+.icon {
+  height: 30px;
+  width: 30px;
+}
+
+.small-icon {
+  height: 25px;
+  width: 25px;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.test > img {
+  position: absolute;
+  z-index: 500;
+  height: 100%;
+  width: 100%;
+}
+
+/* Paste this css to your style sheet file or under head tag */
+/* This only works with JavaScript, 
+if it's not present, don't show loader */
+.no-js #loader {
+  display: none;
+}
+.js #loader {
+  display: block;
+  position: absolute;
+  left: 100px;
+  top: 0;
+}
+.se-pre-con {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  background-image: url(https://smallenvelop.com/wp-content/uploads/2014/08/Preloader_11.gif)
+    center no-repeat #fff;
 }

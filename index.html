@@ -9,67 +9,188 @@
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+    <script>
+      $(document).ready(function () {
+        //paste this code under the head tag or in a separate js file.
+        // Wait for window load
 
+        // $(".info-legend")
+        //   .on("change", function() {
+        //     var strUsertext = this.selectedIndex;
+        //     alert(strUsertext);
+        //     map.addLayer(layer);
+        //   })
+        //   .change();
+
+        var playing = 0;
+        // var expanded = 0;
+        // $("#search-form").click(function() {
+        //   if (expanded) {
+        //     $("#search-form")
+        //       .find(".search")
+        //       .removeClass("form-control-expanded")
+        //       .addClass("form-control");
+        //     expanded = 0;
+        //   } else {
+        //     $("#search-form")
+        //       .find(".search")
+        //       .removeClass("form-control")
+        //       .addClass("form-control-expanded");
+        //     expanded = 1;
+        //   }
+        // });
+        $("#date-1").click(function () {
+          $("#p-bar").css({ width: "16.66%", transition: "1s" });
+        });
+        $("#date-2").click(function () {
+          $("#p-bar").css({ width: "33.33%", transition: "1s" });
+        });
+        $("#date-3").click(function () {
+          $("#p-bar").css({ width: "50%", transition: "1s" });
+        });
+        $("#date-4").click(function () {
+          $("#p-bar").css({ width: "66.66%", transition: "1s" });
+        });
+        $("#date-5").click(function () {
+          $("#p-bar").css({ width: "83.3%", transition: "1s" });
+        });
+        $("#date-6").click(function () {
+          $("#p-bar").css({ width: "100%", transition: "1s" });
+        });
+        $("#play").click(function () {
+          $("#p-bar").css({ width: "100%", transition: "30s" });
+          if (playing) {
+            $("#play")
+              .find(".glyphicon")
+              .removeClass("glyphicon-pause")
+              .addClass("glyphicon-play-circle");
+            playing = 0;
+          } else {
+            $("#play")
+              .find(".glyphicon")
+              .removeClass("glyphicon-play-circle")
+              .addClass("glyphicon-pause");
+            playing = 1;
+          }
+        });
+        $(document).ready(function () {
+          $(".sub-menu ul").hide();
+          $(".sub-menu a").click(function () {
+            $(this).parent(".sub-menu").children("ul").slideToggle("100");
+            $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+          });
+        });
+      });
+    </script>
     <title>Project Demo</title>
     <meta charset="utf-8" />
   </head>
-  <div class="top input-group">
-    <input
-      type="text"
-      class="form-control"
-      placeholder="Search"
-      name="search"
-    />
-    <div class="input-group-btn">
-      <button class="btn btn-primary" type="submit">
-        <i class="glyphicon glyphicon-search"></i>
-      </button>
+  <body>
+    <div class="menu">
+      <nav class="animated bounceInDown">
+        <ul>
+          <li>
+            <a href="#profile"
+              ><img class="icon" src="data/sun.svg" /> Temperature</a
+            >
+          </li>
+          <li>
+            <a href="#profile"
+              ><img class="icon" src="data/satellite.svg" /> Satellite</a
+            >
+          </li>
+          <li class="sub-menu">
+            <a href="#settings"
+              ><img class="icon" src="data/cloud.svg" /> Wind</a
+            >
+            <ul>
+              <li>
+                <a href="#settings" id="global"
+                  ><img class="small-icon" src="data/wind.svg" /> Global Wind</a
+                >
+              </li>
+              <li>
+                <a href="#settings" id="australia"
+                  ><img class="small-icon" src="data/wind.svg" /> Australian
+                  Wind</a
+                >
+              </li>
+              <li>
+                <a href="#settings" id="south"
+                  ><img class="small-icon" src="data/wind.svg" /> South Wind</a
+                >
+              </li>
+              <li>
+                <a href="#settings" id="test"
+                  ><img class="small-icon" src="data/wind.svg" /> Test Wind</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
     </div>
-  </div>
-  <!-- <div class="map" id="map"></div> -->
-  <div class="bottom">
-    <div class="options">
-      <button class="btn btn-primary" type="submit">
-        <span class="glyphicon glyphicon-play-circle"></span>
-      </button>
-    </div>
-    <div class="bar">
-      <div class="progress" style="height: 10px;">
-        <div
-          class="progress-bar"
-          role="progressbar"
-          style="width: 25%; height: 10px;"
-          aria-valuenow="25"
-          aria-valuemin="0"
-          aria-valuemax="100"
-        ></div>
+    <div class="top input-group">
+      <input
+        id="search-form"
+        type="text"
+        class="search form-control"
+        placeholder="Procurar localidade.."
+        name="search"
+      />
+      <div class="input-group-btn">
+        <button class="btn btn-primary search-button" type="submit">
+          <i class="glyphicon glyphicon-search"></i>
+        </button>
       </div>
     </div>
+    <div class="map" id="map"></div>
+    <div class="bottom">
+      <div class="options">
+        <button class="btn btn-primary play-button" type="submit">
+          <span id="play" class="glyphicon play glyphicon-play"></span>
+        </button>
+      </div>
+      <div class="bar">
+        <div class="progress" style="height: 6px; background-color: #4c4949">
+          <div
+            id="p-bar"
+            class="progress-bar"
+            role="progressbar"
+            style="width: 16.66%; height: 6px; background-color: #e5e5e5"
+          ></div>
+        </div>
+      </div>
+    </div>
+    <div class="scale">
+      <table class="table table-borderless">
+        <thead>
+          <tr class="date">
+            <td id="date-1" class="date-item" scope="col">Qua 3</td>
+            <td id="date-2" class="date-item" scope="col">Qui 4</td>
+            <td id="date-3" class="date-item" scope="col">Sex 5</td>
+            <td id="date-4" class="date-item" scope="col">Sáb 6</td>
+            <td id="date-5" class="date-item" scope="col">Dom 7</td>
+            <td id="date-6" class="date-item" scope="col">Seg 8</td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <!--test
+  <div class="test">
+    <img
+      class="icon"
+      src="https://estatico-redemet.decea.mil.br/satelite/2020/03/21/realcada/maps/realcada_202003211300.png"
+    />
   </div>
-  <div class="scale">
-    <table class="table table-borderless">
-      <thead>
-        <tr class="date">
-          <td scope="col">Qua 3</td>
-          <td scope="col">Qui 4</td>
-          <td scope="col">Sex 5</td>
-          <td scope="col">Sáb 6</td>
-          <td scope="col">Dom 7</td>
-          <td scope="col">Seg 8</td>
-        </tr>
-      </thead>
-    </table>
-  </div>
-  <body>
+  -->
     <!--vendor-->
     <!--<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
     <!-- Leaflet -->
-    <link
-      rel="stylesheet"
-      href="https://npmcdn.com/leaflet@1.1.0/dist/leaflet.css"
-    />
+    <link rel="stylesheet" href="leaflet.css" />
     <script src="https://npmcdn.com/leaflet@1.1.0/dist/leaflet.js"></script>
 
     <!-- Load Esri Leaflet from CDN -->
@@ -92,5 +213,6 @@
     <!--leaflet-velocity-->
     <link rel="stylesheet" href="dist/leaflet-velocity.css" />
     <script src="dist/leaflet-velocity.js"></script>
+    <div class="se-pre-con"></div>
   </body>
 </html>
