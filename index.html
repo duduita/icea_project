@@ -11,7 +11,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
     <script>
-      $(document).ready(function () {
+      $(document).ready(function() {
+        $.ajax({
+          url:
+            "https://api-redemet.decea.mil.br/produtos/satelite/realcada?api_key=gdkP7S0gy9sB4JsOLoYe34D52CGyrDzZK3xAWe80&data=2020032114"
+        }).then(function(data) {
+          alert.log(data.lat_lon.lon_min);
+        });
         //paste this code under the head tag or in a separate js file.
         // Wait for window load
 
@@ -40,25 +46,25 @@
         //     expanded = 1;
         //   }
         // });
-        $("#date-1").click(function () {
+        $("#date-1").click(function() {
           $("#p-bar").css({ width: "16.66%", transition: "1s" });
         });
-        $("#date-2").click(function () {
+        $("#date-2").click(function() {
           $("#p-bar").css({ width: "33.33%", transition: "1s" });
         });
-        $("#date-3").click(function () {
+        $("#date-3").click(function() {
           $("#p-bar").css({ width: "50%", transition: "1s" });
         });
-        $("#date-4").click(function () {
+        $("#date-4").click(function() {
           $("#p-bar").css({ width: "66.66%", transition: "1s" });
         });
-        $("#date-5").click(function () {
+        $("#date-5").click(function() {
           $("#p-bar").css({ width: "83.3%", transition: "1s" });
         });
-        $("#date-6").click(function () {
+        $("#date-6").click(function() {
           $("#p-bar").css({ width: "100%", transition: "1s" });
         });
-        $("#play").click(function () {
+        $("#play").click(function() {
           $("#p-bar").css({ width: "100%", transition: "30s" });
           if (playing) {
             $("#play")
@@ -74,11 +80,16 @@
             playing = 1;
           }
         });
-        $(document).ready(function () {
+        $(document).ready(function() {
           $(".sub-menu ul").hide();
-          $(".sub-menu a").click(function () {
-            $(this).parent(".sub-menu").children("ul").slideToggle("100");
-            $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+          $(".sub-menu a").click(function() {
+            $(this)
+              .parent(".sub-menu")
+              .children("ul")
+              .slideToggle("100");
+            $(this)
+              .find(".right")
+              .toggleClass("fa-caret-up fa-caret-down");
           });
         });
       });
