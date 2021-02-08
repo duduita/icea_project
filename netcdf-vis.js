@@ -19,7 +19,7 @@ function initDemoMap() {
     minZoom: 2,
     maxZoom: 5,
     maxBounds: bounds,
-    maxBoundsViscosity: 1
+    maxBoundsViscosity: 1,
   });
 
   // layer control panal
@@ -33,14 +33,14 @@ function initDemoMap() {
     maxZoom: 18,
     cellSize: 5,
     exp: 3,
-    max: 75
+    max: 75,
   });
-  idw.addTo(map);
-  layerControl.addOverlay(idw, "Global Temp").addTo(map);
+  //idw.addTo(map);
+  //layerControl.addOverlay(idw, "Global Temp").addTo(map);
 
   return {
     map: map,
-    layerControl: layerControl
+    layerControl: layerControl,
   };
 }
 
@@ -50,86 +50,132 @@ var map = mapStuff.map;
 var layerControl = mapStuff.layerControl;
 
 // load data (u, v grids) from somewhere (e.g. https://github.com/danwild/wind-js-server)
-$.getJSON("data/australia.json", function(data) {
+$.getJSON("data/australia.json", function (data) {
   var velocityLayer = L.velocityLayer({
     displayValues: true,
     displayOptions: {
       velocityType: "Wind",
       displayPosition: "bottomleft",
-      displayEmptyString: "No wind data"
+      displayEmptyString: "No wind data",
     },
     data: data,
-    maxVelocity: 25
+    maxVelocity: 25,
   });
 
   layerControl.addOverlay(velocityLayer, "Australia Wind");
-});
 
-$.getJSON("data/global.json", function(data) {
-  var velocityLayer = L.velocityLayer({
-    displayValues: true,
-    displayOptions: {
-      velocityType: "Wind",
-      displayPosition: "bottomleft",
-      displayEmptyString: "No wind data"
-    },
-    data: data,
-    maxVelocity: 25
-  });
-
-  layerControl.addOverlay(velocityLayer, "Global Wind");
-});
-
-$.getJSON("data/problem.json", function(data) {
-  var velocityLayer = L.velocityLayer({
-    displayValues: true,
-    displayOptions: {
-      velocityType: "Wind",
-      displayPosition: "bottomleft",
-      displayEmptyString: "No wind data"
-    },
-    data: data,
-    maxVelocity: 25
-  });
-
-  layerControl.addOverlay(velocityLayer, "South America Wind");
-  map.setView([-18, -50], 5);
-});
-
-$.getJSON("data/sampling.json", function(data) {
-  var velocityLayer = L.velocityLayer({
-    displayValues: true,
-    displayOptions: {
-      velocityType: "Wind",
-      displayPosition: "bottomleft",
-      displayEmptyString: "No wind data"
-    },
-    data: data,
-    maxVelocity: 25
-  });
-
-  layerControl.addOverlay(velocityLayer, "Sampling America Wind");
-  map.setView([-18, -50], 5);
-
-  $(document).ready(function() {
-    alert("ready");
-    $(".info-legend")
-      .on("click", function() {
-        alert("called");
-        velocityLayer.addTo(map);
+  $(document).ready(function () {
+    var on = 0;
+    //alert("ready");
+    $("#australia")
+      .on("click", function () {
+        //alert("called");
+        if (!on) {
+          velocityLayer.addTo(map);
+          on = 1;
+        } else {
+          velocityLayer.remove(map);
+          on = 0;
+        }
       })
       .change();
   });
 });
 
-var legend = L.control({ position: "topright" });
-legend.onAdd = function(map) {
-  var div = L.DomUtil.create("div", "info-legend");
-  div.innerHTML =
-    "<select><option>1</option><option>2</option><option>3</option></select>";
-  div.firstChild.onmousedown = div.firstChild.ondblclick =
-    L.DomEvent.stopPropagation;
-  return div;
-};
+$.getJSON("data/global.json", function (data) {
+  var velocityLayer = L.velocityLayer({
+    displayValues: true,
+    displayOptions: {
+      velocityType: "Wind",
+      displayPosition: "bottomleft",
+      displayEmptyString: "No wind data",
+    },
+    data: data,
+    maxVelocity: 25,
+  });
 
-legend.addTo(map);
+  layerControl.addOverlay(velocityLayer, "Global Wind");
+
+  $(document).ready(function () {
+    var on = 0;
+    //alert("ready");
+    $("#global")
+      .on("click", function () {
+        //alert("called");
+        if (!on) {
+          velocityLayer.addTo(map);
+          on = 1;
+        } else {
+          velocityLayer.remove(map);
+          on = 0;
+        }
+      })
+      .change();
+  });
+});
+
+$.getJSON("data/problem.json", function (data) {
+  var velocityLayer = L.velocityLayer({
+    displayValues: true,
+    displayOptions: {
+      velocityType: "Wind",
+      displayPosition: "bottomleft",
+      displayEmptyString: "No wind data",
+    },
+    data: data,
+    maxVelocity: 25,
+  });
+
+  layerControl.addOverlay(velocityLayer, "South America Wind");
+  map.setView([-18, -50], 5);
+
+  $(document).ready(function () {
+    var on = 0;
+    //alert("ready");
+    $("#south")
+      .on("click", function () {
+        //alert("called");
+        if (!on) {
+          velocityLayer.addTo(map);
+          on = 1;
+        } else {
+          velocityLayer.remove(map);
+          on = 0;
+        }
+      })
+      .change();
+  });
+});
+
+$.getJSON("data/sampling.json", function (data) {
+  var velocityLayer = L.velocityLayer({
+    displayValues: true,
+    displayOptions: {
+      velocityType: "Wind",
+      displayPosition: "bottomleft",
+      displayEmptyString: "No wind data",
+    },
+    data: data,
+    maxVelocity: 25,
+  });
+
+  layerControl.addOverlay(velocityLayer, "Sampling America Wind");
+  map.setView([-18, -50], 5);
+
+  $(document).ready(function () {
+    var on = 0;
+    //alert("ready");
+    $("#test")
+      .on("click", function () {
+        //alert("called");
+        if (!on) {
+          velocityLayer.addTo(map);
+          on = 1;
+        } else {
+          velocityLayer.remove(map);
+          on = 0;
+        }
+      })
+      .change();
+  });
+});

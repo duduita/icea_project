@@ -374,6 +374,7 @@
 .leaflet-control-layers-expanded {
   color: #fff;
   background: transparent;
+  visibility: hidden;
 }
 
 .leaflet-control-layers-scrollbar {

@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
-      $(document).ready(function() {
+      $(document).ready(function () {
         // $(".info-legend")
         //   .on("change", function() {
         //     var strUsertext = this.selectedIndex;
@@ -36,25 +36,25 @@
         //     expanded = 1;
         //   }
         // });
-        $("#date-1").click(function() {
+        $("#date-1").click(function () {
           $("#p-bar").css({ width: "16.66%", transition: "1s" });
         });
-        $("#date-2").click(function() {
+        $("#date-2").click(function () {
           $("#p-bar").css({ width: "33.33%", transition: "1s" });
         });
-        $("#date-3").click(function() {
+        $("#date-3").click(function () {
           $("#p-bar").css({ width: "50%", transition: "1s" });
         });
-        $("#date-4").click(function() {
+        $("#date-4").click(function () {
           $("#p-bar").css({ width: "66.66%", transition: "1s" });
         });
-        $("#date-5").click(function() {
+        $("#date-5").click(function () {
           $("#p-bar").css({ width: "83.3%", transition: "1s" });
         });
-        $("#date-6").click(function() {
+        $("#date-6").click(function () {
           $("#p-bar").css({ width: "100%", transition: "1s" });
         });
-        $("#play").click(function() {
+        $("#play").click(function () {
           $("#p-bar").css({ width: "100%", transition: "30s" });
           if (playing) {
             $("#play")
@@ -70,24 +70,56 @@
             playing = 1;
           }
         });
+        $(document).ready(function () {
+          $(".sub-menu ul").hide();
+          $(".sub-menu a").click(function () {
+            $(this).parent(".sub-menu").children("ul").slideToggle("100");
+            $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+          });
+        });
       });
     </script>
     <title>Project Demo</title>
     <meta charset="utf-8" />
   </head>
   <div class="menu">
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#news">News</a></li>
-      <li class="dropdown">
-        <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
-        <div class="dropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
-        </div>
-      </li>
-    </ul>
+    <nav class="animated bounceInDown">
+      <ul>
+        <li>
+          <a href="#profile"
+            ><img class="icon" src="/data/sun.svg" />Temperature</a
+          >
+        </li>
+        <li class="sub-menu">
+          <a href="#settings"
+            ><img class="icon" src="/data/cloud.svg" /> Wind</a
+          >
+          <ul>
+            <li>
+              <a href="#settings" id="global"
+                ><img class="small-icon" src="/data/wind.svg" /> Global Wind</a
+              >
+            </li>
+            <li>
+              <a href="#settings" id="australia"
+                ><img class="small-icon" src="/data/wind.svg" /> Australian
+                Wind</a
+              >
+            </li>
+            <li>
+              <a href="#settings" id="south"
+                ><img class="small-icon" src="/data/wind.svg" /> South Wind</a
+              >
+            </li>
+            <li>
+              <a href="#settings" id="test"
+                ><img class="small-icon" src="/data/wind.svg" /> Test Wind</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
   </div>
   <div class="top input-group">
     <input
@@ -103,7 +135,7 @@
       </button>
     </div>
   </div>
-  <!-- <div class="map" id="map"></div> -->
+  <div class="map" id="map"></div>
   <div class="bottom">
     <div class="options">
       <button class="btn btn-primary play-button" type="submit">
@@ -111,12 +143,12 @@
       </button>
     </div>
     <div class="bar">
-      <div class="progress" style="height: 6px; background-color: #4c4949;">
+      <div class="progress" style="height: 6px; background-color: #4c4949">
         <div
           id="p-bar"
           class="progress-bar"
           role="progressbar"
-          style="width: 16.66%; height: 6px; background-color: #e5e5e5;"
+          style="width: 16.66%; height: 6px; background-color: #e5e5e5"
         ></div>
       </div>
     </div>
