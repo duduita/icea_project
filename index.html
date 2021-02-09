@@ -1,5 +1,4 @@
 <!-- https://github.com/danwild/leaflet-velocity -->
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -12,10 +11,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
     <script>
       $(document).ready(function() {
-        $.ajax({
-          url:
-            "https://api-redemet.decea.mil.br/produtos/satelite/realcada?api_key=gdkP7S0gy9sB4JsOLoYe34D52CGyrDzZK3xAWe80&data=2020032114"
-        }).then(function(data) {});
+        const futureDays = new Date();
+        var weekDays = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
+        for (i = 1; i <= 6; i++) {
+          futureDays.setDate(new Date().getDate() + i - 1);
+          document.getElementById(`date-${i}`).innerHTML = `${
+            weekDays[futureDays.getDay()]
+          } ${futureDays.getDate()}`;
+        }
+
         //paste this code under the head tag or in a separate js file.
         // Wait for window load
 
@@ -101,38 +105,64 @@
         <ul>
           <li>
             <a href="#profile"
-              ><img class="icon" src="data/sun.svg" /> Temperature</a
+              ><img class="icon" src="data/sun.svg" /> Temperatura</a
             >
           </li>
           <li>
             <a href="#profile" id="satellite"
-              ><img class="icon" src="data/satellite.svg" /> Satellite</a
+              ><img class="icon" src="data/satellite.svg" /> Satelite</a
+            >
+          </li>
+          <li>
+            <a href="#profile" id="radar"
+              ><img class="icon" src="data/radar.svg" /> Radar</a
             >
           </li>
           <li class="sub-menu">
-            <a href="#settings"
-              ><img class="icon" src="data/cloud.svg" /> Wind</a
-            >
+            <a><img class="icon" src="data/cloud.svg" /> Vento</a>
             <ul>
               <li>
-                <a href="#settings" id="global"
-                  ><img class="small-icon" src="data/wind.svg" /> Global Wind</a
+                <a id="global"
+                  ><img class="small-icon" src="data/wind.svg" /> Globo</a
                 >
               </li>
               <li>
-                <a href="#settings" id="australia"
-                  ><img class="small-icon" src="data/wind.svg" /> Australian
-                  Wind</a
+                <a id="australia"
+                  ><img class="small-icon" src="data/wind.svg" /> Australia
+                </a>
+              </li>
+              <li>
+                <a id="south"
+                  ><img class="small-icon" src="data/wind.svg" /> Sul /
+                  Sudeste</a
                 >
               </li>
               <li>
-                <a href="#settings" id="south"
-                  ><img class="small-icon" src="data/wind.svg" /> South Wind</a
+                <a id="test"
+                  ><img class="small-icon" src="data/wind.svg" /> Teste</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a><img class="icon" src="data/rain.svg" /> Precipitação</a>
+            <ul>
+              <li>
+                <a id="global"
+                  ><img class="small-icon" src="data/wi-raindrop.svg" />
+                  Precipitação</a
                 >
               </li>
               <li>
-                <a href="#settings" id="test"
-                  ><img class="small-icon" src="data/wind.svg" /> Test Wind</a
+                <a id="australia"
+                  ><img class="small-icon" src="data/wi-raindrop.svg" />
+                  Precipitação Convectiva</a
+                >
+              </li>
+              <li>
+                <a id="australia"
+                  ><img class="small-icon" src="data/wi-raindrop.svg" />
+                  Precipitação Não Convectiva</a
                 >
               </li>
             </ul>
@@ -176,7 +206,7 @@
       <table class="table table-borderless">
         <thead>
           <tr class="date">
-            <td id="date-1" class="date-item" scope="col">Qua 3</td>
+            <td id="date-1" class="date-item" scope="col"></td>
             <td id="date-2" class="date-item" scope="col">Qui 4</td>
             <td id="date-3" class="date-item" scope="col">Sex 5</td>
             <td id="date-4" class="date-item" scope="col">Sáb 6</td>
