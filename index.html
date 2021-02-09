@@ -1,5 +1,4 @@
 <!-- https://github.com/danwild/leaflet-velocity -->
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -11,7 +10,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
     <script>
-      $(document).ready(function () {
+      $(document).ready(function() {
+        const futureDays = new Date();
+        var weekDays = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
+        for (i = 1; i <= 6; i++) {
+          futureDays.setDate(new Date().getDate() + i - 1);
+          document.getElementById(`date-${i}`).innerHTML = `${
+            weekDays[futureDays.getDay()]
+          } ${futureDays.getDate()}`;
+        }
+
         //paste this code under the head tag or in a separate js file.
         // Wait for window load
 
@@ -24,41 +32,46 @@
         //   .change();
 
         var playing = 0;
-        // var expanded = 0;
-        // $("#search-form").click(function() {
-        //   if (expanded) {
-        //     $("#search-form")
-        //       .find(".search")
-        //       .removeClass("form-control-expanded")
-        //       .addClass("form-control");
-        //     expanded = 0;
-        //   } else {
-        //     $("#search-form")
-        //       .find(".search")
-        //       .removeClass("form-control")
-        //       .addClass("form-control-expanded");
-        //     expanded = 1;
-        //   }
-        // });
-        $("#date-1").click(function () {
+
+        $("#radar").click(function() {
+          $("#bar-field").css({ width: "50%", transition: "1s" });
+          $("#date-line").css({ width: "50%", transition: "1s" });
+          for (i = 1; i <= 6; i++) {
+            futureDays.setDate(new Date().getDate() + i - 1);
+            document.getElementById(`date-${i}`).innerHTML = `-${7 - i} horas`;
+          }
+        });
+        $("#wind").click(function() {
+          $("#bar-field").css({ width: "100%", transition: "1s" });
+          $("#date-line").css({ width: "100%", transition: "1s" });
+          const futureDays = new Date();
+          var weekDays = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
+          for (i = 1; i <= 6; i++) {
+            futureDays.setDate(new Date().getDate() + i - 1);
+            document.getElementById(`date-${i}`).innerHTML = `${
+              weekDays[futureDays.getDay()]
+            } ${futureDays.getDate()}`;
+          }
+        });
+        $("#date-1").click(function() {
           $("#p-bar").css({ width: "16.66%", transition: "1s" });
         });
-        $("#date-2").click(function () {
+        $("#date-2").click(function() {
           $("#p-bar").css({ width: "33.33%", transition: "1s" });
         });
-        $("#date-3").click(function () {
+        $("#date-3").click(function() {
           $("#p-bar").css({ width: "50%", transition: "1s" });
         });
-        $("#date-4").click(function () {
+        $("#date-4").click(function() {
           $("#p-bar").css({ width: "66.66%", transition: "1s" });
         });
-        $("#date-5").click(function () {
+        $("#date-5").click(function() {
           $("#p-bar").css({ width: "83.3%", transition: "1s" });
         });
-        $("#date-6").click(function () {
+        $("#date-6").click(function() {
           $("#p-bar").css({ width: "100%", transition: "1s" });
         });
-        $("#play").click(function () {
+        $("#play").click(function() {
           $("#p-bar").css({ width: "100%", transition: "30s" });
           if (playing) {
             $("#play")
@@ -74,11 +87,16 @@
             playing = 1;
           }
         });
-        $(document).ready(function () {
+        $(document).ready(function() {
           $(".sub-menu ul").hide();
-          $(".sub-menu a").click(function () {
-            $(this).parent(".sub-menu").children("ul").slideToggle("100");
-            $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+          $(".sub-menu a").click(function() {
+            $(this)
+              .parent(".sub-menu")
+              .children("ul")
+              .slideToggle("100");
+            $(this)
+              .find(".right")
+              .toggleClass("fa-caret-up fa-caret-down");
           });
         });
       });
@@ -92,38 +110,64 @@
         <ul>
           <li>
             <a href="#profile"
-              ><img class="icon" src="data/sun.svg" /> Temperature</a
+              ><img class="icon" src="data/sun.svg" /> Temperatura</a
             >
           </li>
           <li>
-            <a href="#profile"
-              ><img class="icon" src="data/satellite.svg" /> Satellite</a
+            <a href="#profile" id="satellite"
+              ><img class="icon" src="data/satellite.svg" /> Satelite</a
             >
           </li>
-          <li class="sub-menu">
-            <a href="#settings"
-              ><img class="icon" src="data/cloud.svg" /> Wind</a
+          <li>
+            <a href="#profile" id="radar"
+              ><img class="icon" src="data/radar.svg" /> Radar</a
             >
+          </li>
+          <li id="wind" class="sub-menu">
+            <a><img class="icon" src="data/cloud.svg" /> Vento</a>
             <ul>
               <li>
-                <a href="#settings" id="global"
-                  ><img class="small-icon" src="data/wind.svg" /> Global Wind</a
+                <a id="global"
+                  ><img class="small-icon" src="data/wind.svg" /> Globo</a
                 >
               </li>
               <li>
-                <a href="#settings" id="australia"
-                  ><img class="small-icon" src="data/wind.svg" /> Australian
-                  Wind</a
+                <a id="australia"
+                  ><img class="small-icon" src="data/wind.svg" /> Australia
+                </a>
+              </li>
+              <li>
+                <a id="south"
+                  ><img class="small-icon" src="data/wind.svg" /> Sul /
+                  Sudeste</a
                 >
               </li>
               <li>
-                <a href="#settings" id="south"
-                  ><img class="small-icon" src="data/wind.svg" /> South Wind</a
+                <a id="test"
+                  ><img class="small-icon" src="data/wind.svg" /> Teste</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a><img class="icon" src="data/rain.svg" /> Precipitação</a>
+            <ul>
+              <li>
+                <a id="global"
+                  ><img class="small-icon" src="data/wi-raindrop.svg" />
+                  Precipitação</a
                 >
               </li>
               <li>
-                <a href="#settings" id="test"
-                  ><img class="small-icon" src="data/wind.svg" /> Test Wind</a
+                <a id="australia"
+                  ><img class="small-icon" src="data/wi-raindrop.svg" />
+                  Precipitação Convectiva</a
+                >
+              </li>
+              <li>
+                <a id="australia"
+                  ><img class="small-icon" src="data/wi-raindrop.svg" />
+                  Precipitação Não Convectiva</a
                 >
               </li>
             </ul>
@@ -131,7 +175,7 @@
         </ul>
       </nav>
     </div>
-    <div class="top input-group">
+    <!-- <div class="top input-group">
       <input
         id="search-form"
         type="text"
@@ -144,7 +188,7 @@
           <i class="glyphicon glyphicon-search"></i>
         </button>
       </div>
-    </div>
+    </div> -->
     <div class="map" id="map"></div>
     <div class="bottom">
       <div class="options">
@@ -153,7 +197,11 @@
         </button>
       </div>
       <div class="bar">
-        <div class="progress" style="height: 6px; background-color: #4c4949">
+        <div
+          id="bar-field"
+          class="progress"
+          style="height: 6px; background-color: #4c4949"
+        >
           <div
             id="p-bar"
             class="progress-bar"
@@ -164,27 +212,19 @@
       </div>
     </div>
     <div class="scale">
-      <table class="table table-borderless">
+      <table id="date-line" class="table table-borderless">
         <thead>
           <tr class="date">
-            <td id="date-1" class="date-item" scope="col">Qua 3</td>
-            <td id="date-2" class="date-item" scope="col">Qui 4</td>
-            <td id="date-3" class="date-item" scope="col">Sex 5</td>
-            <td id="date-4" class="date-item" scope="col">Sáb 6</td>
-            <td id="date-5" class="date-item" scope="col">Dom 7</td>
-            <td id="date-6" class="date-item" scope="col">Seg 8</td>
+            <td id="date-1" class="date-item" scope="col"></td>
+            <td id="date-2" class="date-item" scope="col"></td>
+            <td id="date-3" class="date-item" scope="col"></td>
+            <td id="date-4" class="date-item" scope="col"></td>
+            <td id="date-5" class="date-item" scope="col"></td>
+            <td id="date-6" class="date-item" scope="col"></td>
           </tr>
         </thead>
       </table>
     </div>
-    <!--test
-  <div class="test">
-    <img
-      class="icon"
-      src="https://estatico-redemet.decea.mil.br/satelite/2020/03/21/realcada/maps/realcada_202003211300.png"
-    />
-  </div>
-  -->
     <!--vendor-->
     <!--<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
