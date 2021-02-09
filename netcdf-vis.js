@@ -1,3 +1,14 @@
+const today = new Date(); // It's too repetitive
+const year = today.getFullYear();
+const month = ("0" + (today.getMonth() + 1)).slice(-2);
+const day = ("0" + today.getDate()).slice(-2);
+const hour = ("0" + today.getHours()).slice(-2); // Need double check
+const formattedToday = `${year}${month}${day}${hour}`;
+
+var scale_date;
+
+var satellite_src;
+
 function initDemoMap() {
   var Esri_DarkGreyCanvas = L.esri.basemapLayer("DarkGray");
   var Esri_WorldImagery = L.esri.basemapLayer("Imagery");
@@ -182,12 +193,6 @@ $.getJSON("data/newmodel.json", function(data) {
 });
 
 $(document).ready(function() {
-  const today = new Date(); // It's too repetitive
-  const year = today.getFullYear();
-  const month = ("0" + (today.getMonth() + 1)).slice(-2);
-  const day = ("0" + today.getDate()).slice(-2);
-  const hour = ("0" + today.getHours()).slice(-2); // Need double check
-  const formattedToday = `${year}${month}${day}${hour}`;
   //alert(formattedToday);
   $.ajax({
     url: `https://api-redemet.decea.mil.br/produtos/satelite/realcada?api_key=gdkP7S0gy9sB4JsOLoYe34D52CGyrDzZK3xAWe80&data=${formattedToday}`
@@ -214,12 +219,6 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = ("0" + (today.getMonth() + 1)).slice(-2);
-  const day = ("0" + today.getDate()).slice(-2);
-  const hour = ("0" + today.getHours()).slice(-2);
-  const formattedToday = `${year}${month}${day}${hour}`;
   //alert(formattedToday); // Need to check if this format is okay
   $.ajax({
     url: `https://api-redemet.decea.mil.br/produtos/radar/maxcappi?api_key=gdkP7S0gy9sB4JsOLoYe34D52CGyrDzZK3xAWe80&data=${formattedToday}`
@@ -250,4 +249,65 @@ $(document).ready(function() {
       })
       .change();
   });
+});
+
+$("#date-1").click(function() {
+  $("#p-bar").css({ width: "16.66%", transition: "1s" });
+  scale_date = 1;
+  alert(scale_date);
+});
+$("#date-2").click(function() {
+  $("#p-bar").css({ width: "33.33%", transition: "1s" });
+  scale_date = 2;
+  alert(scale_date);
+});
+$("#date-3").click(function() {
+  $("#p-bar").css({ width: "50%", transition: "1s" });
+  scale_date = 3;
+  alert(scale_date);
+});
+$("#date-4").click(function() {
+  $("#p-bar").css({ width: "66.66%", transition: "1s" });
+  scale_date = 4;
+  alert(scale_date);
+});
+$("#date-5").click(function() {
+  $("#p-bar").css({ width: "83.3%", transition: "1s" });
+  scale_date = 5;
+  alert(scale_date);
+});
+$("#date-6").click(function() {
+  $("#p-bar").css({ width: "100%", transition: "1s" });
+  scale_date = 6;
+  alert(scale_date);
+});
+
+$(document).ready(function() {
+  //alert(formattedToday);
+  for (i = 6; i > 1; i--) {
+    $.ajax({
+      url: `https://api-redemet.decea.mil.br/produtos/satelite/realcada?api_key=gdkP7S0gy9sB4JsOLoYe34D52CGyrDzZK3xAWe80&data=20210209${16 -
+        i}`
+    }).then(function(res) {
+      imageBounds = [
+        [res.data.lat_lon.lat_min, res.data.lat_lon.lon_min],
+        [res.data.lat_lon.lat_max, res.data.lat_lon.lon_max]
+      ];
+      imageUrl = res.data.satelite[0].path;
+      satellite_src.push({ location: imageBounds, src: imageUrl });
+      console.log(satellite_src[0]);
+    });
+  }
+  var actived = 0;
+  $("#satellite")
+    .on("click", function() {
+      if (!actived) {
+        layer.addTo(map);
+        actived = 1;
+      } else {
+        layer.remove(map);
+        actived = 0;
+      }
+    })
+    .change();
 });
