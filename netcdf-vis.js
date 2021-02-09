@@ -7,7 +7,7 @@ const formattedToday = `${year}${month}${day}${hour}`;
 
 var scale_date;
 
-var satellite_src;
+var satellite_src = new Array();
 
 function initDemoMap() {
   var Esri_DarkGreyCanvas = L.esri.basemapLayer("DarkGray");
@@ -295,13 +295,24 @@ $(document).ready(function() {
       ];
       imageUrl = res.data.satelite[0].path;
       satellite_src.push({ location: imageBounds, src: imageUrl });
-      console.log(satellite_src[0]);
+      console.log(satellite_src[scale_date]);
     });
   }
   var actived = 0;
   $("#satellite")
     .on("click", function() {
       if (!actived) {
+        imageBounds = [
+          [
+            satellite_src[scale_date].location[0][0],
+            satellite_src[scale_date].location[0][1]
+          ],
+          [
+            satellite_src[scale_date].location[1][0],
+            satellite_src[scale_date].location[1][0]
+          ]
+        ];
+        var layer = L.imageOverlay(satellite_src[scale_date].src, imageBounds);
         layer.addTo(map);
         actived = 1;
       } else {
