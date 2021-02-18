@@ -6,8 +6,11 @@ const hour = ("0" + today.getHours()).slice(-2); // Need double check
 const formattedToday = `${year}${month}${day}${hour}`;
 
 var scale_date;
+localStorage.setItem(scale_date, 1);
 
 var satellite_src = new Array();
+var actived;
+localStorage.setItem(actived, 0);
 
 function initDemoMap() {
   var Esri_DarkGreyCanvas = L.esri.basemapLayer("DarkGray");
@@ -193,32 +196,6 @@ $.getJSON("data/newmodel.json", function(data) {
 });
 
 $(document).ready(function() {
-  //alert(formattedToday);
-  $.ajax({
-    url: `https://api-redemet.decea.mil.br/produtos/satelite/realcada?api_key=gdkP7S0gy9sB4JsOLoYe34D52CGyrDzZK3xAWe80&data=${formattedToday}`
-  }).then(function(res) {
-    imageBounds = [
-      [res.data.lat_lon.lat_min, res.data.lat_lon.lon_min],
-      [res.data.lat_lon.lat_max, res.data.lat_lon.lon_max]
-    ];
-    imageUrl = res.data.satelite[0].path;
-    var layer = L.imageOverlay(imageUrl, imageBounds);
-    var actived = 0;
-    $("#satellite")
-      .on("click", function() {
-        if (!actived) {
-          layer.addTo(map);
-          actived = 1;
-        } else {
-          layer.remove(map);
-          actived = 0;
-        }
-      })
-      .change();
-  });
-});
-
-$(document).ready(function() {
   //alert(formattedToday); // Need to check if this format is okay
   $.ajax({
     url: `https://api-redemet.decea.mil.br/produtos/radar/maxcappi?api_key=gdkP7S0gy9sB4JsOLoYe34D52CGyrDzZK3xAWe80&data=${formattedToday}`
@@ -232,11 +209,10 @@ $(document).ready(function() {
       ];
       imageUrl = res.data.radar[0][i].path;
       if (imageUrl != undefined) {
-        var layer = L.imageOverlay(imageUrl, imageBounds);
-        myLayerGroup.addLayer(layer);
+        var layer_radar = L.imageOverlay(imageUrl, imageBounds);
+        myLayerGroup.addLayer(layer_radar);
       }
     }
-    var actived = 0;
     $("#radar")
       .on("click", function() {
         if (!actived) {
@@ -253,71 +229,73 @@ $(document).ready(function() {
 
 $("#date-1").click(function() {
   $("#p-bar").css({ width: "16.66%", transition: "1s" });
-  scale_date = 1;
-  alert(scale_date);
+  localStorage.setItem(scale_date, 1);
 });
 $("#date-2").click(function() {
   $("#p-bar").css({ width: "33.33%", transition: "1s" });
-  scale_date = 2;
-  alert(scale_date);
+  localStorage.setItem(scale_date, 2);
 });
 $("#date-3").click(function() {
   $("#p-bar").css({ width: "50%", transition: "1s" });
-  scale_date = 3;
-  alert(scale_date);
+  localStorage.setItem(scale_date, 3);
 });
 $("#date-4").click(function() {
   $("#p-bar").css({ width: "66.66%", transition: "1s" });
-  scale_date = 4;
-  alert(scale_date);
+  localStorage.setItem(scale_date, 4);
 });
 $("#date-5").click(function() {
   $("#p-bar").css({ width: "83.3%", transition: "1s" });
-  scale_date = 5;
-  alert(scale_date);
+  localStorage.setItem(scale_date, 5);
 });
 $("#date-6").click(function() {
   $("#p-bar").css({ width: "100%", transition: "1s" });
-  scale_date = 6;
-  alert(scale_date);
+  localStorage.setItem(scale_date, 6);
 });
 
 $(document).ready(function() {
-  //alert(formattedToday);
-  for (i = 6; i > 1; i--) {
-    $.ajax({
-      url: `https://api-redemet.decea.mil.br/produtos/satelite/realcada?api_key=gdkP7S0gy9sB4JsOLoYe34D52CGyrDzZK3xAWe80&data=20210209${16 -
-        i}`
-    }).then(function(res) {
-      imageBounds = [
-        [res.data.lat_lon.lat_min, res.data.lat_lon.lon_min],
-        [res.data.lat_lon.lat_max, res.data.lat_lon.lon_max]
-      ];
-      imageUrl = res.data.satelite[0].path;
-      satellite_src.push({ location: imageBounds, src: imageUrl });
-      console.log(satellite_src[scale_date]);
-    });
-  }
-  var actived = 0;
   $("#satellite")
-    .on("click", function() {
-      if (!actived) {
-        imageBounds = [
-          [
-            satellite_src[scale_date].location[0][0],
-            satellite_src[scale_date].location[0][1]
-          ],
-          [
-            satellite_src[scale_date].location[1][0],
-            satellite_src[scale_date].location[1][0]
-          ]
-        ];
-        var layer = L.imageOverlay(satellite_src[scale_date].src, imageBounds);
+    .on("click", async function() {
+      for (i = 1; i <= 6; i++) {
+        async function getDataAsync() {
+          var response = await fetch(
+            `https://api-redemet.decea.mil.br/produtos/satelite/realcada?api_key=gdkP7S0gy9sB4JsOLoYe34D52CGyrDzZK3xAWe80&data=202102090${i}`
+          );
+          var res = await response.json();
+          return res;
+        }
+        getDataAsync().then(res => {
+          imageBounds = [
+            [res.data.lat_lon.lat_min, res.data.lat_lon.lon_min],
+            [res.data.lat_lon.lat_max, res.data.lat_lon.lon_max]
+          ];
+          imageUrl = res.data.satelite[0].path;
+          satellite_src.push({ location: imageBounds, src: imageUrl });
+          console.log(satellite_src[i]);
+        });
+      }
+      scale_date = localStorage.getItem(scale_date);
+      actived = localStorage.getItem(actived);
+
+      imageBounds = [
+        [
+          satellite_src[scale_date].location[0][0],
+          satellite_src[scale_date].location[0][1]
+        ],
+        [
+          satellite_src[scale_date].location[1][0],
+          satellite_src[scale_date].location[1][1]
+        ]
+      ];
+      imageUrl = satellite_src[scale_date].src;
+
+      layer = L.imageOverlay(imageUrl, imageBounds);
+      alert(actived);
+      if (actived == 0) {
         layer.addTo(map);
-        actived = 1;
+        localStorage.setItem(actived, 1);
       } else {
         layer.remove(map);
-        actived = 0;
+        localStorage.setItem(actived, 0);
       }
     })
     .change();
