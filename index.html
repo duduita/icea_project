@@ -9,6 +9,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gifshot/0.3.2/gifshot.js"></script>
+
     <script>
       $(document).ready(function() {
         const futureDays = new Date();
@@ -53,24 +55,7 @@
             } ${futureDays.getDate()}`;
           }
         });
-        $("#date-1").click(function() {
-          $("#p-bar").css({ width: "16.66%", transition: "1s" });
-        });
-        $("#date-2").click(function() {
-          $("#p-bar").css({ width: "33.33%", transition: "1s" });
-        });
-        $("#date-3").click(function() {
-          $("#p-bar").css({ width: "50%", transition: "1s" });
-        });
-        $("#date-4").click(function() {
-          $("#p-bar").css({ width: "66.66%", transition: "1s" });
-        });
-        $("#date-5").click(function() {
-          $("#p-bar").css({ width: "83.3%", transition: "1s" });
-        });
-        $("#date-6").click(function() {
-          $("#p-bar").css({ width: "100%", transition: "1s" });
-        });
+
         $("#play").click(function() {
           $("#p-bar").css({ width: "100%", transition: "30s" });
           if (playing) {
